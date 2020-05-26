@@ -1,0 +1,4 @@
+11.111.111-1,Isabella,Gonzalez,si,1000
+22.222.222-2,Mateo,Diaz,si,1000
+33.333.333-3,Josefa,Soto,no,3500
+22.222.222-2,Mateo,Diaz,no,1500
