@@ -13,6 +13,10 @@ AdoptedDog::AdoptedDog(string id, string dogName, string ownerRut, string ownerN
 	this->ownerLastname = ownerLastName;
 }
 
+AdoptedDog::~AdoptedDog()
+{
+}
+
 string AdoptedDog::getId()
 {
 	return this->id;

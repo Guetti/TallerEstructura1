@@ -5,11 +5,17 @@ class DonationList
 public:
 	DonationList();
 	DonationList(int max);
+	~DonationList();
 
-	void AddDonation(Donation newDonation);
-	
+	void addDonation(Donation newDonation);
+	void expand();
+	void print();
+
+	int getSize();
+
 private:
 	Donation* list;
 	int size;
+	int max;
 };
 

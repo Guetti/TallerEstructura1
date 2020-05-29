@@ -10,6 +10,10 @@ AdoptedList::AdoptedList(int max)
 	size = 0;
 }
 
+AdoptedList::~AdoptedList()
+{
+}
+
 void AdoptedList::AddAdopted(AdoptedDog newAdopted)
 {
 	list[size] = newAdopted;

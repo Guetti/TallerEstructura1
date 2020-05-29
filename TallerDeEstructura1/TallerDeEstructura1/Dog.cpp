@@ -14,6 +14,11 @@ Dog::Dog(string id, char size, int age, char sex, string vaccinated, string ster
 	this->sterilized = sterilized;
 }
 
+Dog::~Dog()
+{
+	
+}
+
 string Dog::getId()
 {
 	return this->id;
@@ -44,6 +49,7 @@ string Dog::getSterilized()
 	return this->sterilized;
 }
 
+
 void Dog::setId(string id)
 {
 	this->id = id;
@@ -73,3 +79,4 @@ void Dog::setSterilized(string vaccinated)
 {
 	this->vaccinated = vaccinated;
 }
+

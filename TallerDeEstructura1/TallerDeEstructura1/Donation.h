@@ -4,8 +4,10 @@ using namespace std;
 class Donation
 {
 public:
-	Donation();
+	Donation(); //Constructor vacio
+	Donation(int ammount); // Constructor donacion sin datos
 	Donation(string donatorRut, string donatorName, string donatorLastname, string accounted, int ammount);
+	~Donation();
 
 	string getDonatorRut();
 	string getDonatorName();

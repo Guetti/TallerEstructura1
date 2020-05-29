@@ -4,27 +4,52 @@
 #include "DogList.h"
 #include "AdoptedDog.h"
 #include "AdoptedList.h"
+#include "DonationList.h"
 class DogsSystem
 {
 public:
+	DogsSystem();
 	DogsSystem(int money, int vaccineCost, int sterilizationCostMale,int sterilizationCostFemale);
-	Dog searchDog();
-	Donation searchDonation();
+	~DogsSystem();
+
+	void readFiles();
+
+	void mainMenu();
+	void searchDogMenu();
+	void searchDonationMenu();
+	void receiveDonationMenu();
+	void adoptDogMenu();
+	void stadisticsMenu();
+	void exitAndSave();
+	
+	void startProgram();
+	
+	bool searchDog();
+	bool searchDonation();
 	bool receiveDonation();
 	bool AdoptDog();
 	string stadistics();
-	void exit();
 
-	//void mainMenu();
-	//void searchDogMenu();
-	//void searchDonationMenu();
-	//void receiveDonationMenu();
-	//void adoptDogMenu();
-	//void stadisticsMenu();
+	void setMoney(int money);
+	void setVaccineCost(int vaccineCost);
+	void setSterilizationCostMale(int sterilizationCostMale);
+	void setSterilizationCostFemale(int sterilizationCostFemale);
+	
+	int getMoney();
+	int getVaccineCost();
+	int getSterilizationCostMale();
+	int getSterilizationCostFemale();
 
+	int random(int min, int max);
+
+	DogList getDogList();
 private:
-	DogList dogs = DogList(10); // Aqui tengo la duda.
-	AdoptedList adoptedDogs = AdoptedList(10); // Aqui igual.
-	int money, vaccineCost, sterilizationCostMale, sterilizationCostFemale;
+	DogList* dogs; // Aqui tengo la duda.
+	AdoptedList* adoptedDogs; // Aqui igual.
+	DonationList* donations;
+	int money; // no se esta actualizando
+	int vaccineCost;
+	int sterilizationCostMale;
+	int sterilizationCostFemale;
 };
 

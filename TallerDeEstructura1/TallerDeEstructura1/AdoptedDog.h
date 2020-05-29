@@ -6,6 +6,7 @@ class AdoptedDog
 public:
 	AdoptedDog();
 	AdoptedDog(string id, string dogName, string ownerRut, string ownerName, string ownerLastname);
+	~AdoptedDog();
 
 	string getId();
 	string getDogName();
@@ -18,6 +19,7 @@ public:
 	void setOwnerRut(string ownerRut);
 	void setOwnerName(string ownerName);
 	void setOwnerLastname(string ownerLastname);
+
 private:
 	string id;
 	string dogName;

@@ -22,16 +22,7 @@ int insertOption(int options)
 	return n;
 }
 
-void mainMenu(DogsSystem system)
-{
-	cout << "\tBienvenido" << endl;
-	cout << "[1] Buscar perro\n[2] Buscar donacion\n[3] Recibir donacion\n[4] Dar en adopcion\n[5] Estadisticas\n[6] Salir" << endl;
-	
-}
 
-void searchDogMenu(DogsSystem system)
-{
-}
 
 void searchDonationMenu(DogsSystem system)
 {
@@ -47,10 +38,17 @@ void adoptDogMenu(DogsSystem system)
 
 void stadisticsMenu(DogsSystem system)
 {
+
 }
+
+void save(DogsSystem system) {
+
+}
+
+
 
 int main()
 {
-	DogsSystem dogsSystem = DogsSystem(150000, 5000, 10000, 15000);
-	mainMenu(dogsSystem);
+	DogsSystem* dogsSystem = new DogsSystem(150000, 5000, 10000, 15000);
+	dogsSystem->startProgram();
 }

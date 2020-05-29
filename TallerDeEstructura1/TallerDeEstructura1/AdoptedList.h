@@ -5,6 +5,7 @@ class AdoptedList
 public:
 	AdoptedList();
 	AdoptedList(int max);
+	~AdoptedList();
 
 	void AddAdopted(AdoptedDog newAdopted);
 

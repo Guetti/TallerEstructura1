@@ -4,6 +4,15 @@ Donation::Donation()
 {
 }
 
+Donation::Donation(int ammount)
+{
+	this->donatorRut = "";
+	this->donatorName = "";
+	this->donatorLastname = "";
+	this->accounted = "";
+	this->ammount = ammount;
+}
+
 Donation::Donation(string rut, string name, string lastname, string accounted, int ammount)
 {
 	this->donatorRut = rut;
@@ -11,6 +20,10 @@ Donation::Donation(string rut, string name, string lastname, string accounted, i
 	this->donatorLastname = lastname;
 	this->accounted = accounted;
 	this->ammount = ammount;
+}
+
+Donation::~Donation()
+{
 }
 
 string Donation::getDonatorRut()

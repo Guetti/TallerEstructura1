@@ -6,6 +6,7 @@ class Dog
 public:
 	Dog();
 	Dog(string id, char size, int age, char sex, string vaccinated, string sterilized);
+	~Dog();
 
 	string getId();
 	char getSize();
