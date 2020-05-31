@@ -1,5 +1,6 @@
 #pragma once
 #include "Dog.h"
+
 class DogList
 {
 public:
@@ -9,7 +10,10 @@ public:
 
 	void addDog(Dog newDog);
 	void expand();
-	void print();
+	void printAll();
+	void printAvailable();
+	Dog searchDog(string id);
+	string getText();
 
 	int getSize();
 

@@ -10,6 +10,7 @@ public:
 	void addDonation(Donation newDonation);
 	void expand();
 	void print();
+	string getText();
 
 	int getSize();
 

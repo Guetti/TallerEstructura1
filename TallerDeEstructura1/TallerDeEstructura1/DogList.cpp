@@ -42,12 +42,36 @@ void DogList::expand()
 	delete[] copy;
 }
 
-void DogList::print()
+void DogList::printAll()
 {
 	cout << "Perros rescatados: " << endl;
 	for (int i = 0; i < this->size; i++) {
 		cout << "[" << (i + 1) << "] ID: " << list[i].getId() << "\tEdad: " << list[i].getAge() << "\t Sexo: " << list[i].getSex() << "\tTamanio: " << list[i].getSize() << "\tVacunado: " << list[i].getVaccinated() << "\tEsterilizado: " << list[i].getSterilized() << endl;
 	}
+}
+
+void DogList::printAvailable()
+{
+}
+
+Dog DogList::searchDog(string id)
+{
+	for (int i = 0; i < size; i++) {
+		if (list[i].getId()._Equal(id)) {
+			return list[i];
+		}
+	}
+	return Dog();
+}
+
+string DogList::getText()
+{
+	string text = "";
+
+	for (int i = 0; i < size; i++) {
+		text += list[i].getId() + "," + list[i].getSize() + "," + to_string(list[i].getAge()) + "," + list[i].getSex() + "," + list[i].getVaccinated() + "," + list[i].getSterilized() + "\n";
+	}
+	return text;
 }
 
 int DogList::getSize()

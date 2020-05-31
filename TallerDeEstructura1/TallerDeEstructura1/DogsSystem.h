@@ -23,10 +23,11 @@ public:
 	void exitAndSave();
 	
 	void startProgram();
+	int validateOption(int maxOptions);
 	
 	bool searchDog();
 	bool searchDonation();
-	bool receiveDonation();
+	bool receiveDonation(bool random);
 	bool AdoptDog();
 	string stadistics();
 
@@ -41,13 +42,11 @@ public:
 	int getSterilizationCostFemale();
 
 	int random(int min, int max);
-
-	DogList getDogList();
 private:
-	DogList* dogs; // Aqui tengo la duda.
-	AdoptedList* adoptedDogs; // Aqui igual.
+	DogList* dogs;
+	AdoptedList* adoptedDogs; 
 	DonationList* donations;
-	int money; // no se esta actualizando
+	int money;
 	int vaccineCost;
 	int sterilizationCostMale;
 	int sterilizationCostFemale;

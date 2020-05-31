@@ -49,6 +49,18 @@ void DonationList::print()
 	}
 }
 
+string DonationList::getText()
+{
+	string text = "";
+
+	for (int i = 0; i < size; i++) {
+		text += list[i].getDonatorRut() + "," + list[i].getDonatorName() + "," + list[i].getDonatorLastname() + "," + list[i].getAccounted() + "," + to_string(list[i].getAmmount()) + "," + "\n";
+	}
+	return text;
+}
+
+
+
 int DonationList::getSize()
 {
 	return this->size;

@@ -1,8 +1,4 @@
 ﻿  DogsSystem.cpp
-C:\Users\Guetti\source\repos\TallerDeEstructura1\TallerDeEstructura1\DogsSystem.cpp(190,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\Guetti\source\repos\TallerDeEstructura1\TallerDeEstructura1\DogsSystem.cpp(253,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  Donation.cpp
-  DonationList.cpp
-  TallerDeEstructura1.cpp
-  Generando código...
+C:\Users\Guetti\source\repos\TallerDeEstructura1\TallerDeEstructura1\DogsSystem.cpp(250,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\Guetti\source\repos\TallerDeEstructura1\TallerDeEstructura1\DogsSystem.cpp(338,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
   TallerDeEstructura1.vcxproj -> C:\Users\Guetti\source\repos\TallerDeEstructura1\Debug\TallerDeEstructura1.exe

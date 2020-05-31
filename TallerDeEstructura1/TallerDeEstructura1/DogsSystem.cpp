@@ -74,7 +74,7 @@ void DogsSystem::readFiles()
 	text.open("Donaciones.txt");
 
 	if (text.fail()) {
-		cout << " No se encontro el archivo Adoptados.txt. \n" << endl;
+		cout << " No se encontro el archivo Donaciones.txt. \n" << endl;
 		exit(EXIT_FAILURE);
 	}
 
@@ -97,8 +97,44 @@ void DogsSystem::readFiles()
 
 			int iAmmount = stoi(ammount);
 
+			if (accounted._Equal("no")) {
+				money += iAmmount;
+				accounted = "si";
+			}
+
 			Donation donation = Donation(rut, name, lastname, accounted, iAmmount);
 			donations->addDonation(donation);
+		}
+	}
+
+	text.close();
+
+	text.open("Adoptados.txt");
+
+	if (text.fail()) {
+		cout << " No se encontro el archivo Adoptados.txt. \n" << endl;
+		exit(EXIT_FAILURE);
+	}
+
+	while (!text.eof()) {
+		getline(text, line);
+		if (line != "") {
+			string id = "";
+			string dogName = "";
+			string ownerRut = "";
+			string ownerName = "";
+			string ownerLastname = "";
+
+			istringstream space(line);
+
+			getline(space, id, ',');
+			getline(space, dogName, ',');
+			getline(space, ownerRut, ',');
+			getline(space, ownerName, ',');
+			getline(space, ownerLastname, ',');
+
+			AdoptedDog adopted = AdoptedDog(id, dogName, ownerRut, ownerName, ownerLastname);
+			adoptedDogs->addAdopted(adopted);
 		}
 	}
 
@@ -110,34 +146,39 @@ void DogsSystem::mainMenu()
 	cout << "\tBienvenido" << endl;
 
 	while (true) {
+		cout << "\t\t\t\tFondos totales: $" << money << endl;
 		cout << "[1] Buscar perro\n[2] Buscar donacion\n[3] Recibir donacion\n[4] Dar en adopcion\n[5] Estadisticas\n[6] Salir" << endl;
 		cout << "Ingrese una opcion: ";
-		int option;
-		cin >> option;
+		int option = validateOption(6);
+
 		switch (option)
 		{
+		case 0:
+			break;
 		case 1:
 			searchDogMenu();
-			dogs->print();
+			//dogs->printAll();
 			break;
 		case 2:
 			searchDonationMenu();
-			donations->print();
+			//donations->print();
 			break;
 		case 3:
-			//receiveDonationMenu(system);
+			receiveDonationMenu();
 			break;
 		case 4:
-			//adoptDogMenu(system);
+			adoptDogMenu();
+			//adoptedDogs->print();
 			break;
 		case 5:
 			//stadisticsMenu(system);
 			break;
 		case 6:
 			//save(system);
-			//sexitAndSave();
+			exitAndSave();
 			break;
 		}
+		
 	}
 }
 
@@ -148,7 +189,6 @@ void DogsSystem::searchDogMenu()
 		return;
 	}
 	if (searchDog()) {
-		cout << "El perro ha sido rescatado con exito" << endl;
 		cout << "Nuevos fondos: $" << this->money << endl;
 		return;
 	}
@@ -162,32 +202,78 @@ void DogsSystem::searchDonationMenu()
 		cout << "La fundacion debe tener fondos negativos para buscar donaciones" << endl;
 		return;
 	}
-	searchDonation();
+	if (!searchDonation()) {
+		cout << "No se han encontrado donaciones" << endl;
+		return;
+	}
 }
 
 void DogsSystem::receiveDonationMenu()
 {
+	receiveDonation(false);
 }
 
 void DogsSystem::adoptDogMenu()
 {
+	if (AdoptDog()) {
+		cout << "El perro ha sido adoptado con exito" << endl;
+	}
+	else {
+		cout << "No se ha podido adoptar el perro correctamente" << endl;
+	}
 }
 
 void DogsSystem::stadisticsMenu()
 {
 }
 
+void DogsSystem::exitAndSave()
+{
+	ofstream rescueds("Rescatados.txt");
+	string line = this->dogs->getText();
+	rescueds << line;
+
+	ofstream donations("Donaciones.txt");
+	line = this->donations->getText();
+	donations << line;
+
+	ofstream adopteds("Adoptados.txt");
+	line = this->adoptedDogs->getText();
+	adopteds << line;
+
+
+	exit(1);
+}
+
 void DogsSystem::startProgram()
 {
+	srand(time(NULL));
 	readFiles(); //leer archivos
-	//Desplegar menu
 	mainMenu();
 
 }
 
+int DogsSystem::validateOption(int maxOptions)
+{
+	int option;
+
+	cin >> option;
+
+	if (cin.fail()) {
+		cout << "Ha ingresado caracteres no validos..." << endl;
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return 0;
+ 	}
+	else {
+		//cout << "good data" << endl;
+		cin.clear();
+		return option;
+	}
+}
+
 bool DogsSystem::searchDog()
 {
-	srand(time(NULL));
 	int randomNumber = random(0, 100);
 	cout << randomNumber << endl;
 	if (randomNumber <= 30)
@@ -201,8 +287,8 @@ bool DogsSystem::searchDog()
 		int randomAge = random(1,15);
 		string vaccinated = "no";
 		string sterilized = "no";
-		char sex = 'm';
-		char size = 's';
+		char sex = 'M';
+		char size = 'P';
 
 		if (randomVaccinated == 1) {
 			vaccinated = "si";
@@ -211,18 +297,18 @@ bool DogsSystem::searchDog()
 			sterilized = "si";
 		}
 		if (randomSex == 1) {
-			sex = 'h';
+			sex = 'H';
 		}
 		switch (randomSize)
 		{
 		case 2:
-			size = 'm';
+			size = 'M';
 			break;
 		case 3:
-			size = 'l';
+			size = 'G';
 			break;
 		default:
-			size = 's';
+			size = 'P';
 			break;
 		}
 
@@ -230,17 +316,15 @@ bool DogsSystem::searchDog()
 
 		Dog* dog = new Dog(id, size, randomAge, sex, vaccinated, sterilized);
 
-		cout << "\tSe encontro un perro" << endl;
-		cout << "\tTamanio: " << dog->getSize() << endl;
+		cout << "\tSe ha encontrado y rescatado el siguiente perro:" << endl;
+		cout << "\t\tTamanio: " << dog->getSize() << endl;
 		
-		cout << "\tEdad: " << dog->getAge() << endl;
-		cout << "\tSexo: " << dog->getSex() << endl;
-		cout << "\tVacunado: " << dog->getVaccinated() << endl;
-		cout << "\tEsterilizado: " << dog->getSterilized() << endl;
-		cout << "El costo de rescate de este perro es de: $" << randomCost << endl;
-		cout << &dog << endl;
+		cout << "\t\tEdad: " << dog->getAge() << endl;
+		cout << "\t\tSexo: " << dog->getSex() << endl;
+		cout << "\t\tVacunado: " << dog->getVaccinated() << endl;
+		cout << "\t\tEsterilizado: " << dog->getSterilized() << endl;
+		cout << "\tEl costo de rescate de este perro fue de: $" << randomCost << endl;
 		dogs->addDog(*dog);
-		cout << "Costo random: " << randomCost << endl;
 		money -= randomCost;		
 		return true;
 	}
@@ -250,27 +334,116 @@ bool DogsSystem::searchDog()
 
 bool DogsSystem::searchDonation()
 {
-	srand(time(NULL));
 	int randomNumber = random(0, 100);
 	cout << randomNumber << endl;
 	if (randomNumber <= 50)
 	{
-		int money = random(1000, 2000);
-		Donation* donation = new Donation(money);
-		donations->addDonation(*donation);
+		cout << "\t\tSe ha encontrado un donador" << endl;
+		receiveDonation(true);
+		return true;
 	}
 
 	return false;
 }
 
-bool DogsSystem::receiveDonation()
+bool DogsSystem::receiveDonation(bool random)
 {
-	return false;
+	string rut = "";
+	string name = "";
+	string lastname = "";
+	int donatedMoney = 0;
+
+	cout << "\tIngrese el rut del donador: ";
+	cin >> rut;
+	cin.clear();
+	cout << "\tIngrese el nombre y apellido del donador: ";
+	cin >> name >> lastname;
+	cin.clear();
+	if (random) {
+		donatedMoney = this->random(1000, 2000);
+	}
+	else {
+		cout << "Ingrese el total de la donacion: ";
+		cin >> donatedMoney;
+		if (cin.fail()) {
+			cout << "ERROR: Porfavor use solo numeros enteros..." << endl;
+			return false;
+		}
+		else {
+			if (donatedMoney <= 0) {
+				cout << "No puede donar una cantidad negativa o menor a 1" << endl;
+				return false;
+			}
+		}
+	}
+	Donation* donation = new Donation(rut, name, lastname, "si", donatedMoney);
+	donations->addDonation(*donation);
+	this->money += donatedMoney;
+	cout << "Se ha registrado una donacion por $" << donatedMoney << " de " << name << " " << lastname << " con Rut: " << rut << endl;
+	return true;
 }
 
 bool DogsSystem::AdoptDog()
 {
-	return false;
+	dogs->printAll();
+	cout << "Porfavor, ingrese el codigo del perro que quiere adoptar: ";
+	string id = "";
+	cin >> id;
+	Dog dog = dogs->searchDog(id);
+
+	if (dog.getId()._Equal(""))
+	{
+		cout << "No se ha encontrado el perro con id = " << id << endl;
+		return false;
+	}
+	if (adoptedDogs->exists(id)) {
+		cout << "Error: Este perro ya tiene duenio..." << endl;
+		return false;
+	}
+	int treatmentCost = 0;
+	if (dog.getVaccinated()._Equal("no")) {
+		treatmentCost += vaccineCost;
+	}
+	if (dog.getSterilized()._Equal("no")) {
+		if (dog.getSex() == 'm') {
+			treatmentCost += sterilizationCostMale;
+		}
+		else {
+			treatmentCost += sterilizationCostFemale;
+		}
+	}
+
+	if (treatmentCost > 0) {
+		cout << "Para adoptar este perro se necesita cancelar un monto de: $" << treatmentCost << " para sus tratamientos. ¿Desea aceptar? \n[1] Si \n[2] No" << endl;
+		int option = validateOption(2);
+		if (option == 0 || option == 2) {
+			return false;
+		}
+	}
+	else {
+		cout << "Este perro tiene sus vacunas al dia y esta esterilizado, no es necesario cancelar nada" << endl;
+	}
+
+	string dogName = "";
+	string ownerRut = "";
+	string ownerName = "";
+	string ownerLastname = "";
+
+	cout << "Nombre a su perro: ";
+	cin >> dogName;
+	cin.clear();
+	cout << "su rut: ";
+	cin >> ownerRut;
+	cin.clear();
+	cout << "Su nombre y apellido: ";
+	cin >> ownerName >> ownerLastname;
+	cin.clear();
+
+	AdoptedDog adoptedDog = AdoptedDog(id, dogName, ownerRut, ownerName, ownerLastname);
+	adoptedDogs->addAdopted(adoptedDog);
+	adoptedDogs->print();
+	money += treatmentCost;
+	return true;
 }
 
 string DogsSystem::stadistics()
@@ -323,9 +496,4 @@ int DogsSystem::random(int min, int max)
 {
 	int num = min + rand() % (max + 1 - min);
 	return num;
-}
-
-DogList DogsSystem::getDogList()
-{
-	return *this->dogs;
 }
