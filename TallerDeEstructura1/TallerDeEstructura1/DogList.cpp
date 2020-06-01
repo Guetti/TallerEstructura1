@@ -42,7 +42,7 @@ void DogList::expand()
 	delete[] copy;
 }
 
-void DogList::printAll()
+void DogList::print()
 {
 	cout << "Perros rescatados: " << endl;
 	for (int i = 0; i < this->size; i++) {
@@ -50,9 +50,6 @@ void DogList::printAll()
 	}
 }
 
-void DogList::printAvailable()
-{
-}
 
 Dog DogList::searchDog(string id)
 {
@@ -62,6 +59,16 @@ Dog DogList::searchDog(string id)
 		}
 	}
 	return Dog();
+}
+
+bool DogList::exists(string id)
+{
+	for (int i = 0; i < size; i++) {
+		if (list[i].getId()._Equal(id)) {
+			return true;
+		}
+	}
+	return false;
 }
 
 string DogList::getText()
@@ -77,4 +84,28 @@ string DogList::getText()
 int DogList::getSize()
 {
 	return this->size;
+}
+
+int DogList::getMaleAmmount()
+{
+	int contador = 0;
+
+	for (int i = 0; i < size; i++) {
+		if (list[i].getSex() == 'M') {
+			contador++;
+		}
+	}
+	return contador;
+}
+
+int DogList::getFemaleAmmount()
+{
+	int contador = 0;
+
+	for (int i = 0; i < size; i++) {
+		if (list[i].getSex() == 'H') {
+			contador++;
+		}
+	}
+	return contador;
 }

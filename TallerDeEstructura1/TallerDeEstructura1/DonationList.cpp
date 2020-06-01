@@ -65,3 +65,8 @@ int DonationList::getSize()
 {
 	return this->size;
 }
+
+Donation DonationList::getDonation(int index)
+{
+	return list[index];
+}

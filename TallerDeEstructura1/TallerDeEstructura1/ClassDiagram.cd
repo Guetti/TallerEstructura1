@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AdoptedDog" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAMQAAAAAAAAAIAACCCQAAAAIAAAAIAAAAQgAAAIgA=</HashCode>
+      <FileName>AdoptedDog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdoptedList" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAQAEgEAAIAAAAAAgIAACAAAAAAAgAAQAQAAAAAAAAA=</HashCode>
+      <FileName>AdoptedList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dog" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAAAEAABIAAQAgAAKQAAAiADEAAAAAEAAAAwAAAAgA=</HashCode>
+      <FileName>Dog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DogList" Collapsed="true">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAEgEAAIAAEAABAIABCAAAAAAAAAAQAAAAAAAAAAQ=</HashCode>
+      <FileName>DogList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DogsSystem" Collapsed="true">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAsABBAQAQgAAcAgAACQIEMAAAOQgQAAUAAAAYEAA=</HashCode>
+      <FileName>DogsSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Donation" Collapsed="true">
+    <Position X="6.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAIAAAAgAAAIAAAQIAAYFQAAEEAAAAiAA=</HashCode>
+      <FileName>Donation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DonationList" Collapsed="true">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCEgEAAIAAACAAAIAACAAAAAAAAAAAAAAEAAAAAEA=</HashCode>
+      <FileName>DonationList.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

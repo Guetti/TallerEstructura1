@@ -44,9 +44,9 @@ void AdoptedList::expand()
 
 void AdoptedList::print()
 {
-	cout << "Perros adoptados: " << endl;
+	cout << "\tPerros adoptados: " << endl;
 	for (int i = 0; i < this->size; i++) {
-		cout << "[" << (i + 1) << "] ID: " << list[i].getId() << "\tNombre del perro: " << list[i].getDogName() << "\tRut duenio: " << list[i].getOwnerRut() << "\tDuenio: " << list[i].getOwnerName() << " " << list[i].getOwnerLastname() << endl;
+		cout << "\t[" << (i + 1) << "] ID: " << list[i].getId() << "\tNombre del perro: " << list[i].getDogName() << "\tRut duenio: " << list[i].getOwnerRut() << "\tDuenio: " << list[i].getOwnerName() << " " << list[i].getOwnerLastname() << endl;
 	}
 
 }
@@ -59,6 +59,11 @@ AdoptedDog AdoptedList::searchDog(string id)
 		}
 	}
 	return AdoptedDog();
+}
+
+AdoptedDog AdoptedList::getDog(int index)
+{
+	return list[index];
 }
 
 bool AdoptedList::exists(string id)
@@ -79,4 +84,9 @@ string AdoptedList::getText()
 		text += list[i].getId() + "," + list[i].getDogName() + "," + list[i].getOwnerRut() + "," + list[i].getOwnerName() + "," + list[i].getOwnerLastname() + "\n";
 	}
 	return text;
+}
+
+int AdoptedList::getSize()
+{
+	return this->size;
 }

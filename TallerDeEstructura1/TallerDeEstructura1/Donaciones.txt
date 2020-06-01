@@ -2,5 +2,3 @@
 22.222.222-2,Mateo,Diaz,si,1000,
 33.333.333-3,Josefa,Soto,si,3500,
 22.222.222-2,Mateo,Diaz,si,1500,
-1,1,1,yes,1,
-20.126.546-0,Gustavo,Szigethi,yes,1596,
